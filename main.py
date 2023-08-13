@@ -53,16 +53,12 @@ async def help(ctx):
 async def dog(ctx):
     try:
         async with aiohttp.ClientSession() as session:
-            request = await session.get('https://some-random-api.ml/img/dog')
+            request = await session.get('https://dog.ceo/api/breeds/image/random')
             dog_json = await request.json()
 
-            request2 = await session.get('https://some-random-api.ml/facts/dog')
-            fact_json = await request2.json()
-
-            embed = discord.Embed(color=discord.Color.purple())
-            embed.set_image(url=dog_json['link'])
-            embed.set_footer(text=fact_json['fact'])
-            await ctx.channel.send(embed=embed)
+        embed = discord.Embed(color=discord.Color.purple())
+        embed.set_image(url=dog_json['message'])
+        await ctx.channel.send(embed=embed)
     except Exception as e:
         print(e.args)
 
