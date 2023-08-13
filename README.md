@@ -1,0 +1,2 @@
+# ElZaWarudoBot
+Discord bot
